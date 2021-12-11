@@ -179,6 +179,10 @@ button {
 button:hover {
   color: #868686;
 }
+button:hover.active {
+  color: #fff;
+  background: #60885a;
+}
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;

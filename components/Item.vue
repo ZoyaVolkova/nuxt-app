@@ -17,7 +17,7 @@
       <div class="name">{{ item.name }}</div>
       <div class="description">{{ item.description }}</div>
       <div class="price">
-        {{ new Intl.NumberFormat("ru-RU").format(item.price) }}
+        {{ new Intl.NumberFormat("ru-RU").format(item.price) }} руб.
       </div>
     </div>
   </div>
