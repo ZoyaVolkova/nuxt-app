@@ -1,4 +1,12 @@
 # nuxt-app
+## Форма Vue.js с валидацией, возможностью добавлять/удалять и сортировать товары по нескольким категориям.
+![Untitled](static/readme/default.png)
+## Сортировка
+![Untitled](static/readme/sort.png)
+## Валидация формы
+![Untitled](static/readme/error.png)
+# Успешная валидация
+![Untitled](static/readme/success.png)
 
 ## install dependencies
 $ npm install
