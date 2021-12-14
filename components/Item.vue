@@ -34,7 +34,7 @@ export default {
 .items {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 83px;
+  margin-top: 51px;
 }
 .item {
   display: flex;
