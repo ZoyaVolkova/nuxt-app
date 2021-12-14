@@ -1,13 +1,6 @@
 <template>
   <div class="items">
-    <div
-      v-for="item in items"
-      :key="item.name"
-      :id="item.name"
-      class="item"
-      @mouseover="showDelete"
-      @mouseout="hideDelete"
-    >
+    <div v-for="item in items" :key="item.name" :id="item.name" class="item">
       <img class="image" :src="item.link" />
       <img
         class="delete"
@@ -33,20 +26,11 @@ export default {
     },
   },
 
-  methods: {
-    showDelete(e) {
-      const deleteIcon = e.target.closest(".item").querySelector(".delete");
-      deleteIcon.style.visibility = "visible";
-    },
-    hideDelete(e) {
-      const deleteIcon = e.target.closest(".item").querySelector(".delete");
-      deleteIcon.style.visibility = "hidden";
-    },
-  },
+  methods: {},
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .items {
   display: flex;
   flex-wrap: wrap;
@@ -69,6 +53,19 @@ export default {
 }
 .item:hover {
   cursor: pointer;
+  .delete {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+.delete {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  visibility: hidden;
+  opacity: 0;
 }
 .item > div {
   margin-left: 16px;
@@ -96,13 +93,5 @@ export default {
   width: 100%;
   height: 200px;
   border-radius: 4px 4px 0px 0px;
-}
-.delete {
-  width: 32px;
-  height: 32px;
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  visibility: hidden;
 }
 </style>

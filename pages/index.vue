@@ -1,37 +1,24 @@
 <template>
   <div class="container">
-    <div>
+    <div class="form">
       <div class="title">Добавление товара</div>
       <Card
         @submit.prevent="sendForm"
-        @inputName="name = $event"
-        @inputLink="link = $event"
-        @inputPrice="price = $event"
+        @inputName="inputName"
+        @inputLink="inputLink"
+        @inputPrice="inputPrice"
         :isActive="isActive"
       />
     </div>
-    <div class="sort">
-      <div
-        class="select default"
-        @click="toggleDropdown"
-        v-click-outside="hideDropdown"
-      >
-        По умолчанию
-      </div>
-      <svg
-        @click="toggleDropdown"
-        class="arrow"
-        width="8"
-        height="6"
-        viewBox="0 0 8 6"
-        fill="none"
-      >
+    <div class="sort" v-click-outside="hideDropdown">
+      <div class="select default" @click="toggleDropdown">{{ sort }}</div>
+      <svg class="arrow" width="8" height="6" viewBox="0 0 8 6" fill="none">
         <path
           d="M7.48532 1.24264L4.24268 4.48528L1.00003 1.24264"
           stroke="#B4B4B4"
         />
       </svg>
-      <div class="dropdown hidden">
+      <div class="dropdown" v-show="isDropdown">
         <div class="select default" @click="sortDefault">По умолчанию</div>
         <div class="select expensive" @click="sortExpensive">
           Сначала дорогие
@@ -53,6 +40,8 @@ export default {
       name: "",
       link: "",
       price: "",
+      isDropdown: false,
+      sort: "По умолчанию",
     };
   },
 
@@ -66,6 +55,15 @@ export default {
     }
   },
   methods: {
+    inputName(e) {
+      this.name = e;
+    },
+    inputLink(e) {
+      this.link = e;
+    },
+    inputPrice(e) {
+      this.price = e;
+    },
     sendForm(event) {
       const data = new FormData(event.target);
       const dataArr = Array.from(data).filter((item) => !!item[1]);
@@ -83,36 +81,38 @@ export default {
       window.localStorage.setItem("items", JSON.stringify(this.items));
     },
     toggleDropdown() {
-      this.$el.querySelector(".dropdown").classList.toggle("hidden");
+      this.isDropdown === false
+        ? (this.isDropdown = true)
+        : (this.isDropdown = false);
     },
     hideDropdown() {
-      this.$el.querySelector(".dropdown").classList.add("hidden");
+      this.isDropdown = false;
     },
     sortExpensive(e) {
-      e.target.closest(".sort").querySelector(".default").textContent =
-        e.target.textContent;
+      this.hideDropdown();
+      this.sort = e.target.textContent;
 
       this.items = this.items.sort((a, b) => {
         return b.price - a.price;
       });
     },
     sortCheap(e) {
-      e.target.closest(".sort").querySelector(".default").textContent =
-        e.target.textContent;
+      this.hideDropdown();
+      this.sort = e.target.textContent;
       this.items = this.items.sort((a, b) => {
         return a.price - b.price;
       });
     },
     sortByName(e) {
-      e.target.closest(".sort").querySelector(".default").textContent =
-        e.target.textContent;
+      this.hideDropdown();
+      this.sort = e.target.textContent;
       this.items = this.items.sort((a, b) => {
         return a.name.localeCompare(b.name);
       });
     },
     sortDefault(e) {
-      e.target.closest(".sort").querySelector(".default").textContent =
-        e.target.textContent;
+      this.hideDropdown();
+      this.sort = e.target.textContent;
       if (window.localStorage.length > 0) {
         const storage = JSON.parse(window.localStorage.getItem("items"));
         this.items = storage;
@@ -129,33 +129,32 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap");
+
 body {
   background: #faf9f7;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
 }
 .container {
   display: flex;
   font-family: "Source Sans Pro", sans-serif;
-  width: 1440px;
+  max-width: 1376px;
   background: #faf9f7;
   position: relative;
+  margin: 32px;
 }
 .title {
-  width: 247px;
-  height: 35px;
-  margin-left: 32px;
-  margin-top: 32px;
-
   font-style: normal;
   font-weight: 600;
   font-size: 28px;
   line-height: 35px;
-
   color: #3f3f3f;
 }
 .sort {
   position: absolute;
-  top: 31px;
-  right: 32px;
+  top: 0px;
+  right: 0px;
 }
 .select {
   height: 36px;
