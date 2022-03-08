@@ -10,7 +10,7 @@
 
 ## Delete
 
-![Untitled](static/readme/delete.png)
+![Untitled](static/readme/delete.PNG)
 
 ## Error validation
 
