@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="form">
-      <div class="title">Добавление товара</div>
+      <div class="title">Add product</div>
       <Card
         @submit.prevent="sendForm"
         @inputName="inputName"
@@ -19,12 +19,12 @@
         />
       </svg>
       <div class="dropdown" v-show="isDropdown">
-        <div class="select default" @click="sortDefault">По умолчанию</div>
+        <div class="select default" @click="sortDefault">Default</div>
         <div class="select expensive" @click="sortExpensive">
-          Сначала дорогие
+          Price: high to low
         </div>
-        <div class="select cheap" @click="sortCheap">Сначала дешёвые</div>
-        <div class="select by-name" @click="sortByName">По наименованию</div>
+        <div class="select cheap" @click="sortCheap">Price: low to high</div>
+        <div class="select by-name" @click="sortByName">Name</div>
       </div>
     </div>
     <Item :items="items" @delete="deleteItem" />
@@ -41,7 +41,7 @@ export default {
       link: "",
       price: "",
       isDropdown: false,
-      sort: "По умолчанию",
+      sort: "Sort by",
     };
   },
 

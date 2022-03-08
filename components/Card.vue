@@ -6,49 +6,49 @@
     novalidate
   >
     <div class="card_container">
-      <label for="name" class="required">Наименование товара</label>
+      <label for="name" class="required">Name</label>
       <input
         id="name"
         name="name"
         type="text"
-        placeholder="Введите наименование товара"
+        placeholder="Enter name of product"
         required
         @input="$emit('inputName', $event.target.value)"
       />
-      <span class="validity-field name">Поле является обязательным</span>
-      <label for="description">Описание товара</label>
+      <span class="validity-field name">The field is required</span>
+      <label for="description">Description</label>
       <textarea
         id="description"
         name="description"
-        placeholder="Введите описание товара"
+        placeholder="Enter description of product"
       />
-      <span class="validity-field">Поле является обязательным</span>
-      <label for="link" class="required">Ссылка на изображение товара</label>
+      <span class="validity-field">The field is required</span>
+      <label for="link" class="required">Link</label>
       <input
         id="link"
         name="link"
         type="text"
-        placeholder="Введите ссылку"
+        placeholder="Enter product image link"
         required
         @input="$emit('inputLink', $event.target.value)"
       />
-      <span class="validity-field link">Поле является обязательным</span>
-      <label for="price" class="required">Цена товара</label>
+      <span class="validity-field link">The field is required</span>
+      <label for="price" class="required">Price</label>
       <input
         id="price"
         name="price"
         type="number"
-        placeholder="Введите цену"
+        placeholder="Enter price of product"
         required
         @input="$emit('inputPrice', $event.target.value)"
       />
-      <span class="validity-field price">Поле является обязательным</span>
+      <span class="validity-field price">The field is required</span>
       <button
         type="submit"
         :class="{ active: isActive }"
         @click="checkValidity"
       >
-        Добавить товар
+        Add
       </button>
     </div>
   </form>
@@ -208,7 +208,7 @@ input:valid + .validity-field {
 .validity-field {
   color: #ff8484;
   font-weight: normal;
-  font-size: 8px;
+  font-size: 10px;
   line-height: 10px;
   letter-spacing: -0.02em;
   margin: 0;
